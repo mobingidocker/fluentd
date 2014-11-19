@@ -25,6 +25,7 @@ ENV AWS_SECRET_ACCESS_KEY loggingsecretaccesskey
 ENV MOCLOUD_LOG_GROUP test-group-name
 ENV MOCLOUD_LOG_STREAM test-stream-name
 
+COPY startfluent.sh /startfluent.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 CMD ["/usr/bin/supervisord"]
