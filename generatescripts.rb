@@ -4,7 +4,9 @@ logFiles = [
 	{:tag => "modaemon.log", :location => "/var/log/modaemon/modaemon"},
 	{:tag => "apache.access", :location => "/var/log/container/apache2/access.log"},
 	{:tag => "apache.error", :location => "/var/log/container/apache2/error.log"},
-	{:tag => "supervisor.log", :location => "/var/log/container/supervisor/supervisord.log"}
+	{:tag => "supervisor.log", :location => "/var/log/container/supervisor/supervisord.log"},
+	{:tag => "bundler.log", :location => "/var/log/container/bundler.log"},
+	{:tag => "migration.log", :location => "/var/log/container/migration.log"}
 ]
 
 sourceString = ""
@@ -17,7 +19,7 @@ logFiles.each do |file|
   type tail
   format none
   path #{file[:location]}
-  pos_file /var/log/fluentd/#{file[:tag]}.pos
+  pos_file /logpositions/#{file[:tag]}.pos
   tag #{file[:tag]}
   read_from_head true
 </source>

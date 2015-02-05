@@ -24,6 +24,7 @@ ENV AWS_ACCESS_KEY_ID loggingaccesskey
 ENV AWS_SECRET_ACCESS_KEY loggingsecretaccesskey
 ENV MOCLOUD_LOG_GROUP test-group-name
 ENV MOCLOUD_LOG_STREAM test-stream-name
+ENV MOCLOUD_USER_ID abcde
 
 COPY startfluent.sh /startfluent.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
