@@ -7,6 +7,7 @@ logFiles = [
 	{:tag => "supervisor.log", :location => "/var/log/container/supervisor/supervisord.log"},
 	{:tag => "bundler.log", :location => "/var/log/container/bundler.log"},
 	{:tag => "startup.log", :location => "/var/log/container/startup.log"},
+	{:tag => "auth.log", :location => "/var/log/container/auth.log"},
 	{:tag => "nginx.access.log", :location => "/var/log/container/nginx/access.log"},
 	{:tag => "nginx.error.log", :location => "/var/log/container/nginx/error.log"},
 	{:tag => "rails_production.log", :location=> "/var/log/container/rails/production.log" }
