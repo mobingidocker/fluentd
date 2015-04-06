@@ -15,6 +15,7 @@ logFiles = [
 
 sourceString = ""
 matchString = ""
+matchStringSyslog = ""
 
 logFiles.each do |file|
 
@@ -36,6 +37,16 @@ logFiles.each do |file|
 	log_group_name $MOCLOUD_LOG_GROUP
 	log_stream_name $MOCLOUD_LOG_STREAM-#{file[:tag].gsub(".", "-")}
 	auto_create_stream true
+</match>
+	ENDMATCH
+
+	matchStringSyslog += <<-ENDMATCH
+<match #{file[:tag]}>
+	type remote_syslog
+	host $REMOTE_SYSLOG_HOST
+	port $REMOTE_SYSLOG_PORT
+	severity debug
+	program $MOCLOUD_LOG_STREAM-#{file[:tag].gsub(".", "-")}
 </match>
 	ENDMATCH
 
@@ -75,6 +86,7 @@ ENDFILE
 end
 
 matchString = matchString.shellescape.gsub('\$', '$')
+matchStringSyslog = matchStringSyslog.shellescape.gsub('\$', '$')
 
 File.open("startfluent.sh", "w") do |file|
 
@@ -87,3 +99,13 @@ ENDFILE
 		)
 end
 
+File.open("startfluentsyslog.sh", "w") do |file|
+
+	file.write(
+<<-ENDFILE
+#!/bin/bash
+
+/usr/local/bin/fluentd -c /fluent/fluent.conf -i #{matchStringSyslog}
+ENDFILE
+		)
+end

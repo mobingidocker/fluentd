@@ -18,6 +18,7 @@ RUN mkdir -p /var/log/fluentd
 COPY fluent.conf /fluent/fluent.conf
 
 RUN gem install fluent-plugin-cloudwatch-logs --no-ri --no-rdoc
+RUN fluent-gem install fluent-plugin-remote_syslog
 
 ENV AWS_REGION us-west-2
 ENV AWS_ACCESS_KEY_ID loggingaccesskey
@@ -26,7 +27,11 @@ ENV MOCLOUD_LOG_GROUP test-group-name
 ENV MOCLOUD_LOG_STREAM test-stream-name
 ENV MOCLOUD_USER_ID abcde
 
+ENV REMOTE_SYSLOG_HOST example.com
+ENV REMOTE_SYSLOG_PORT 25
+
 COPY startfluent.sh /startfluent.sh
+COPY startfluentsyslog.sh /startfluentsyslog.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 CMD ["/usr/bin/supervisord"]
