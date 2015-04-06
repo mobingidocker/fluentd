@@ -33,5 +33,6 @@ ENV REMOTE_SYSLOG_PORT 25
 COPY startfluent.sh /startfluent.sh
 COPY startfluentsyslog.sh /startfluentsyslog.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord-syslog.conf /etc/supervisor/conf.d/supervisord-syslog.conf
 
 CMD ["/usr/bin/supervisord"]
