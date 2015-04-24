@@ -4,6 +4,8 @@ logFiles = [
 	{:tag => "modaemon.log", :location => "/var/log/modaemon/modaemon"},
 	{:tag => "apache.access", :location => "/var/log/container/apache2/access.log"},
 	{:tag => "apache.error", :location => "/var/log/container/apache2/error.log"},
+	{:tag => "apache.httpd.access", :location => "/var/log/container/httpd/access.log"},
+	{:tag => "apache.httpd.error", :location => "/var/log/container/httpd/error.log"},
 	{:tag => "supervisor.log", :location => "/var/log/container/supervisor/supervisord.log"},
 	{:tag => "bundler.log", :location => "/var/log/container/bundler.log"},
 	{:tag => "startup.log", :location => "/var/log/container/startup.log"},
