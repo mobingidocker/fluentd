@@ -1,7 +1,7 @@
 # This is a fluentd container that will watch all files in a given directory recursively
 
-FROM ubuntu:14.04
-MAINTAINER david.siaw@mobingi.com
+FROM ubuntu:16.04
+LABEL MAINTAINER gone
 
 RUN apt-get update
 RUN apt-get install -y supervisor
@@ -35,4 +35,4 @@ COPY startfluentsyslog.sh /startfluentsyslog.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY supervisord-syslog.conf /etc/supervisor/conf.d/supervisord-syslog.conf
 
-CMD ["/usr/bin/supervisord"]
+CMD ["exec", "/usr/bin/supervisord"]
